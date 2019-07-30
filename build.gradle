@@ -90,16 +90,28 @@ jar {
     }
 }
 
+//Create a sources jar.
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+//Create a javadoc jar.
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
 //Define what to publish and how.
 publishing {
     publications {
         maven(MavenPublication) {
             groupId = project.group
             artifactId "datagenerators"
-
-            from components.java
             artifact javadocJar
             artifact sourcesJar
+
+            from components.java
 
             pom {
                 url = 'https://github.com/ldtteam/DataGenerators'
@@ -165,5 +177,11 @@ task setupDecompWorkspace {
 task setupCIWorkspace {
     afterEvaluate {
         println "Setup"
+    }
+}
+
+task curseforge {
+    afterEvaluate {
+        println "No uploading to curseforge required for this project."
     }
 }
