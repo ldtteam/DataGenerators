@@ -185,3 +185,9 @@ task curseforge {
         println "No uploading to curseforge required for this project."
     }
 }
+
+task createChangelog {
+    afterEvaluate {
+        println "No changelog creation needed. since we are not uploading to curseforge."
+    }
+}
