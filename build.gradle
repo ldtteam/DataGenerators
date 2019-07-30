@@ -1,3 +1,5 @@
+import org.w3c.dom.Element
+
 buildscript {
     repositories {
         jcenter()
@@ -6,6 +8,7 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:latest.release"
     }
 }
 
@@ -20,6 +23,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
+apply plugin: 'com.jfrog.artifactory'
 
 sourceSets {
     main {
@@ -44,7 +48,7 @@ dependencies {
     contained "org.mariuszgromada.math:MathParser.org-mXparser:4.0.0"
 }
 
-version = '1.14.4' + System.getenv().containsKey("Version") ? System.getenv("Version") : 'null'
+version = System.getenv().containsKey("Version") ? System.getenv("Version") : "borked-" + System.currentTimeMillis()
 group = 'com.ldtteam'
 archivesBaseName = 'datagenerators'
 
@@ -83,6 +87,72 @@ jar {
                 "Implementation-Vendor"   : "structurizesareus",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
+    }
+}
+
+//Define what to publish and how.
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = project.group
+            artifactId "datagenerators"
+
+            from components.java
+            artifact javadocJar
+            artifact sourcesJar
+
+            pom {
+                url = 'https://github.com/ldtteam/DataGenerators'
+                licenses {
+                    license {
+                        name = 'GNU GENERAL PUBLIC LICENSE Version 3'
+                        url = 'https://www.gnu.org/licenses/gpl-3.0.en.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'AshersLab'
+                        name = 'Asher'
+                        email = 'asherslab@chatchain.co'
+                    }
+                }
+                contributors {
+                    contributor {
+                        id = 'ldtteam'
+                        name = 'Let\'s Develop Together - Team'
+                        email = 'info@ldtteam.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/ldtteam/datagenerators.git'
+                    developerConnection = 'scm:git:ssh://github.com/ldtteam/datagenerators.git'
+                    url = 'https://github.com/ldtteam/DataGenerators'
+                }
+            }
+
+            //Replace all deobf dependencies with normal jar references.
+            pom.withXml { xmlProvider ->
+                final Element document = xmlProvider.asElement()
+                final NodeList groupIdNodes = document.getElementsByTagName("groupId")
+                groupIdNodes.each { groupIdNodeObject ->
+                    final Node groupIdNode = (Node) groupIdNodeObject
+                    final String groupId = groupIdNode.getFirstChild().getTextContent().trim()
+                    groupIdNode.setTextContent(groupId.replace("deobf.", ""))
+                }
+            }
+        }
+    }
+}
+
+//Notify artifactory of what to publish.
+artifactory {
+    publish {
+        defaults {
+            publications('maven')
+            publishBuildInfo = true   //Publish build-info to Artifactory (true by default)
+            publishArtifacts = true   //Publish artifacts to Artifactory (true by default)
+            publishPom = true   //Publish generated POM files to Artifactory (true by default).
+        }
     }
 }
 
