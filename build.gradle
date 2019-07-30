@@ -1,0 +1,118 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url = 'https://files.minecraftforge.net/maven' }
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'jacoco'
+apply plugin: 'maven-publish'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        compileClasspath += sourceSets.main.compileClasspath
+    }
+}
+
+configurations {
+    contained {
+        transitive = false
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.14.4-28.0.18'
+    compileOnly "com.intellij:annotations:+@jar"
+    compile 'com.intellij:annotations:+@jar'
+    compile "org.mariuszgromada.math:MathParser.org-mXparser:4.0.0"
+    contained "org.mariuszgromada.math:MathParser.org-mXparser:4.0.0"
+}
+
+version = '1.14.4' + System.getenv().containsKey("Version") ? System.getenv("Version") : 'null'
+group = 'com.ldtteam'
+archivesBaseName = 'datagenerators'
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+minecraft {
+    mappings channel: 'snapshot', version: '20190726-1.14.3'
+}
+
+javadoc {
+    source += sourceSets.main.allSource
+}
+
+idea {
+    module {
+        inheritOutputDirs = true
+    }
+}
+
+jar {
+    from sourceSets.main.output
+
+    from(configurations.contained.files) {
+        include '*'
+        into 'META-INF/libraries'
+    }
+
+    manifest {
+        attributes([
+                'Maven-Artifact'          : "${project.group}:${project.archivesBaseName}:${project.version}",
+                "Specification-Title"     : "datagenerators",
+                "Specification-Vendor"    : "ldtteam",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "structurizesareus",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+def reobfFile = file("$buildDir/reobfJar/output.jar")
+def reobfArtifact = artifacts.add('default', reobfFile) {
+    type 'jar'
+    builtBy 'reobfJar'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact reobfArtifact
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+task setupDecompWorkspace {
+    afterEvaluate {
+        println "Setup"
+    }
+}
+
+task setupCIWorkspace {
+    afterEvaluate {
+        println "Setup"
+    }
+}
