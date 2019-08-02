@@ -51,6 +51,18 @@ dependencies {
     contained "org.mariuszgromada.math:MathParser.org-mXparser:4.0.0"
 }
 
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include 'META-INF/mods.toml'
+
+        expand 'version': project.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'META-INF/mods.toml'
+    }
+}
+
 version = System.getenv().containsKey("Version") ? System.getenv("Version") : "borked-" + System.currentTimeMillis()
 group = 'com.ldtteam'
 archivesBaseName = 'datagenerators'
@@ -62,7 +74,7 @@ minecraft {
 }
 
 javadoc {
-    source += sourceSets.main.allSource
+    source += sourceSets.main.allJava
 }
 
 idea {
@@ -90,18 +102,6 @@ jar {
                 "Implementation-Vendor"   : "ldtteam",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
-    }
-}
-
-processResources {
-    from(sourceSets.main.resources.srcDirs) {
-        include 'META-INF/mods.toml'
-
-        expand 'version': project.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'META-INF/mods.toml'
     }
 }
 
