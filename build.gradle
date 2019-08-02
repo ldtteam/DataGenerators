@@ -1,4 +1,6 @@
 import org.w3c.dom.Element
+import org.w3c.dom.Node
+import org.w3c.dom.NodeList
 
 buildscript {
     repositories {
@@ -8,7 +10,7 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.9.0"
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:latest.release"
     }
 }
 
@@ -153,6 +155,18 @@ publishing {
                     groupIdNode.setTextContent(groupId.replace("deobf.", ""))
                 }
             }
+        }
+    }
+}
+
+//Notify artifactory of what to publish.
+artifactory {
+    publish {
+        defaults {
+            publications('maven')
+            publishBuildInfo = true   //Publish build-info to Artifactory (true by default)
+            publishArtifacts = true   //Publish artifacts to Artifactory (true by default)
+            publishPom = true   //Publish generated POM files to Artifactory (true by default).
         }
     }
 }
