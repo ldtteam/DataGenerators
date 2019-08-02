@@ -93,6 +93,18 @@ jar {
     }
 }
 
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include 'META-INF/mods.toml'
+
+        expand 'version': project.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'META-INF/mods.toml'
+    }
+}
+
 //Create a sources jar.
 task sourcesJar(type: Jar) {
     classifier = 'sources'
