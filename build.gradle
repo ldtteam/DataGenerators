@@ -36,19 +36,11 @@ sourceSets {
     }
 }
 
-configurations {
-    contained {
-        transitive = false
-    }
-}
-
 dependencies {
     minecraft 'net.minecraftforge:forge:1.14.4-28.0.45'
 
     compileOnly "com.intellij:annotations:+@jar"
     compile 'com.intellij:annotations:+@jar'
-    compile "org.mariuszgromada.math:MathParser.org-mXparser:4.0.0"
-    contained "org.mariuszgromada.math:MathParser.org-mXparser:4.0.0"
 }
 
 processResources {
@@ -101,11 +93,6 @@ idea {
 
 jar {
     from sourceSets.main.output
-
-    from(configurations.contained.files) {
-        include '*'
-        into 'META-INF/libraries'
-    }
 
     manifest {
         attributes([
