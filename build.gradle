@@ -71,6 +71,22 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 
 minecraft {
     mappings channel: 'snapshot', version: '20190726-1.14.3'
+
+    runs {
+        data {
+            workingDirectory project.file('runData')
+
+            property 'forge.logging.console.level', 'info'
+
+            args '--mod', 'datagenerators', '--all', '--output', file('src/main/generated/resources'), '--input', file('src/main/resources')
+
+            mods {
+                structurize {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
 }
 
 javadoc {
