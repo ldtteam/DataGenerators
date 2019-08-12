@@ -3,6 +3,7 @@ package com.ldtteam.datagenerators.blockstate.multipart;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,25 +13,28 @@ public class MultipartOrJson implements IJsonSerializable
 
     /**
      * A list of cases that all have to match the block to return true.
-     *
+     * <p>
      * Key is:
      * Name of a block state.
-     *
+     * <p>
      * Value is:
      * A single case that has to match one of the block states.
      * It can be set to a list separated by | to allow multiple values to match.
      */
+    @NotNull
     private Map<String, String> states = new HashMap<>();
 
-    public MultipartOrJson() {}
+    public MultipartOrJson()
+    {
+    }
 
-    public MultipartOrJson(final Map<String, String> orElements)
+    public MultipartOrJson(@NotNull final Map<String, String> orElements)
     {
         this.states = orElements;
     }
 
     @Override
-    public void deserialize(JsonElement jsonElement)
+    public void deserialize(@NotNull final JsonElement jsonElement)
     {
         final JsonObject orJson = jsonElement.getAsJsonObject();
 
@@ -40,6 +44,7 @@ public class MultipartOrJson implements IJsonSerializable
         }
     }
 
+    @NotNull
     @Override
     public JsonElement serialize()
     {

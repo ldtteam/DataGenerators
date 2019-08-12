@@ -1,15 +1,17 @@
 package com.ldtteam.datagenerators.blockstate;
 
-import com.google.gson.*;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
-import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 public class BlockstateModelJson implements IJsonSerializable
 {
     /**
      * Specifies the path to the model file of the block, starting in assets/<namespace>/models
      */
-    private ResourceLocation model = null;
+    @NotNull
+    private String model = "";
 
     /**
      * otation of the model on the x-axis in increments of 90 degrees.
@@ -28,7 +30,7 @@ public class BlockstateModelJson implements IJsonSerializable
 
     /**
      * Only applies when used in BlockStateVariant#models
-     *
+     * <p>
      * Sets the probability of the model for being used in the game, defaults to 1 (=100%).
      * If more than one model is used for the same variant, the probability will be calculated by dividing the individual model’s weight by the sum of the weights of all models.
      * (For example, if three models are used with weights 1, 1, and 2, then their combined weight would be 4 (1+1+2).
@@ -36,29 +38,31 @@ public class BlockstateModelJson implements IJsonSerializable
      */
     private int weight = 0;
 
-    public BlockstateModelJson() {}
+    public BlockstateModelJson()
+    {
+    }
 
-    public BlockstateModelJson(final ResourceLocation model)
+    public BlockstateModelJson(@NotNull final String model)
     {
         this(model, 0);
     }
 
-    public BlockstateModelJson(final ResourceLocation model, final int x)
+    public BlockstateModelJson(@NotNull final String model, final int x)
     {
         this(model, x, 0);
     }
 
-    public BlockstateModelJson(final ResourceLocation model, final int x, final int y)
+    public BlockstateModelJson(@NotNull final String model, final int x, final int y)
     {
         this(model, x, y, false);
     }
 
-    public BlockstateModelJson(final ResourceLocation model, final int x, final int y, final boolean uvlock)
+    public BlockstateModelJson(@NotNull final String model, final int x, final int y, final boolean uvlock)
     {
         this(model, x, y, uvlock, 0);
     }
 
-    public BlockstateModelJson(final ResourceLocation model, final int x, final int y, final boolean uvlock, final int weight)
+    public BlockstateModelJson(@NotNull final String model, final int x, final int y, final boolean uvlock, final int weight)
     {
         this.model = model;
         this.x = x;
@@ -68,12 +72,12 @@ public class BlockstateModelJson implements IJsonSerializable
     }
 
     @Override
-    public void deserialize(final JsonElement json)
+    public void deserialize(@NotNull final JsonElement json)
     {
         final JsonObject modelJson = json.getAsJsonObject();
 
         if (modelJson.has("model"))
-            this.model = new ResourceLocation(modelJson.get("model").getAsString());
+            this.model = modelJson.get("model").getAsString();
 
         if (modelJson.has("x"))
             this.x = modelJson.get("x").getAsInt();
@@ -88,13 +92,13 @@ public class BlockstateModelJson implements IJsonSerializable
             this.weight = modelJson.get("weight").getAsInt();
     }
 
+    @NotNull
     @Override
     public JsonElement serialize()
     {
         final JsonObject returnValue = new JsonObject();
 
-        if (this.model != null)
-            returnValue.addProperty("model", this.model.toString());
+        returnValue.addProperty("model", this.model);
 
         if (this.x != 0)
             returnValue.addProperty("x", this.x);

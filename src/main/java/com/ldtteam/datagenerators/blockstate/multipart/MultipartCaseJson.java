@@ -1,8 +1,11 @@
 package com.ldtteam.datagenerators.blockstate.multipart;
 
-import com.google.gson.*;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
 import com.ldtteam.datagenerators.blockstate.BlockstateVariantJson;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class MultipartCaseJson implements IJsonSerializable
 {
@@ -11,6 +14,7 @@ public class MultipartCaseJson implements IJsonSerializable
      * A list of cases that have to be met for the model to be applied.
      * If unset, the model always applies.
      */
+    @Nullable
     private MultipartWhenJson when;
 
     /**
@@ -20,23 +24,21 @@ public class MultipartCaseJson implements IJsonSerializable
      * If set to an array, the model will randomly be chosen from the options given, with each option being specified in separate subsidiary -tags.
      * Item frames are treated as blocks and will use "map=false" for a map-less item frame, and "map=true" for item frames with maps.
      */
-    private BlockstateVariantJson apply;
+    @NotNull
+    private BlockstateVariantJson apply = new BlockstateVariantJson();
 
-    public MultipartCaseJson() {}
-
-    public MultipartCaseJson(final BlockstateVariantJson apply)
+    public MultipartCaseJson()
     {
-        this(apply, null);
     }
 
-    public MultipartCaseJson(final BlockstateVariantJson apply, final MultipartWhenJson when)
+    public MultipartCaseJson(@NotNull final BlockstateVariantJson apply, @Nullable final MultipartWhenJson when)
     {
         this.when = when;
         this.apply = apply;
     }
 
     @Override
-    public void deserialize(final JsonElement json)
+    public void deserialize(@NotNull final JsonElement json)
     {
         final JsonObject caseJson = json.getAsJsonObject();
 
@@ -51,6 +53,7 @@ public class MultipartCaseJson implements IJsonSerializable
         this.apply = variantJson;
     }
 
+    @NotNull
     @Override
     public JsonElement serialize()
     {

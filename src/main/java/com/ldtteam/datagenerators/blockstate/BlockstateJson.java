@@ -1,8 +1,12 @@
 package com.ldtteam.datagenerators.blockstate;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
 import com.ldtteam.datagenerators.blockstate.multipart.MultipartCaseJson;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,35 +16,42 @@ import java.util.Map;
 public class BlockstateJson implements IJsonSerializable
 {
     /**
-     *  Holds the names of all the variants of the block.
+     * Holds the names of all the variants of the block.
      */
-    private Map<String, BlockstateVariantJson> variants = new HashMap<>();
+    @Nullable
+    private Map<String, BlockstateVariantJson> variants;
 
     // one or the other \\
 
     /**
      * Used instead of variants to combine models based on block state attributes.
      */
-    private List<MultipartCaseJson> multipartCases = new ArrayList<>();
+    @Nullable
+    private List<MultipartCaseJson> multipartCases;
 
-    public BlockstateJson() {}
+    public BlockstateJson()
+    {
+    }
 
-    public BlockstateJson(final Map<String, BlockstateVariantJson> variants)
+    public BlockstateJson(@Nullable final Map<String, BlockstateVariantJson> variants)
     {
         this.variants = variants;
     }
 
-    public BlockstateJson(final List<MultipartCaseJson> multipartCases)
+    public BlockstateJson(@Nullable final List<MultipartCaseJson> multipartCases)
     {
         this.multipartCases = multipartCases;
     }
 
     @Override
-    public void deserialize(JsonElement jsonElement)
+    public void deserialize(@NotNull final JsonElement jsonElement)
     {
         final JsonObject blockstateJson = jsonElement.getAsJsonObject();
         if (blockstateJson.has("multipart"))
         {
+            if (this.multipartCases == null)
+                this.multipartCases = new ArrayList<>();
+
             for (JsonElement element : jsonElement.getAsJsonArray())
             {
                 final MultipartCaseJson caseJson = new MultipartCaseJson();
@@ -50,6 +61,9 @@ public class BlockstateJson implements IJsonSerializable
         }
         else
         {
+            if (this.variants == null)
+                this.variants = new HashMap<>();
+
             for (Map.Entry<String, JsonElement> jsonElementEntry : blockstateJson.getAsJsonObject("variants").entrySet())
             {
                 final BlockstateVariantJson variantJson = new BlockstateVariantJson();
@@ -59,12 +73,13 @@ public class BlockstateJson implements IJsonSerializable
         }
     }
 
+    @NotNull
     @Override
     public JsonElement serialize()
     {
         final JsonObject returnValue = new JsonObject();
 
-        if (multipartCases.isEmpty())
+        if (variants != null && (multipartCases == null || multipartCases.isEmpty()))
         {
             final JsonObject variantsJson = new JsonObject();
             for (Map.Entry<String, BlockstateVariantJson> variantJsonEntry : variants.entrySet())
@@ -73,7 +88,7 @@ public class BlockstateJson implements IJsonSerializable
             }
             returnValue.add("variants", variantsJson);
         }
-        else
+        else if (multipartCases != null)
         {
             final JsonArray multipartArray = new JsonArray();
 

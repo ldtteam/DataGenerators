@@ -4,7 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
-import net.minecraft.util.Tuple;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,37 +17,47 @@ public class MultipartWhenJson implements IJsonSerializable
     /**
      * Matches if any of the contained cases return true.
      */
-    private List<MultipartOrJson> or = new ArrayList<>();
+    @Nullable
+    private List<MultipartOrJson> or;
 
-    // One or the other, but not both \\
+    // One or the other two, but not both \\
 
     /**
      * Name of a block state.
-     * A single case that has to match one of the block states.
-     * It can be set to a list separated by | to allow multiple values to match.
-     * Cannot be set along side the OR-tag
      */
-    private Tuple<String, String> state = null;
+    @Nullable
+    private String state;
 
-    public MultipartWhenJson() {}
+    /**
+     * A single case that has to match one of the block states. It can be set to a list separated by | to allow multiple values to match.
+     */
+    @Nullable
+    private String cases;
 
-    public MultipartWhenJson(final List<MultipartOrJson> or)
+    public MultipartWhenJson()
+    {
+    }
+
+    public MultipartWhenJson(@Nullable final List<MultipartOrJson> or)
     {
         this.or = or;
     }
 
-    public MultipartWhenJson(final Tuple<String, String> state)
+    public MultipartWhenJson(@Nullable final String state, @Nullable final String cases)
     {
         this.state = state;
+        this.cases = cases;
     }
 
     @Override
-    public void deserialize(JsonElement jsonElement)
+    public void deserialize(@NotNull final JsonElement jsonElement)
     {
         final JsonObject whenJson = jsonElement.getAsJsonObject();
 
         if (whenJson.has("OR"))
         {
+            if (this.or == null)
+                this.or = new ArrayList<>();
             for (JsonElement element : whenJson.getAsJsonArray("OR"))
             {
                 final MultipartOrJson orJson = new MultipartOrJson();
@@ -60,24 +71,25 @@ public class MultipartWhenJson implements IJsonSerializable
             {
                 if (!jsonElementEntry.getKey().equals("OR"))
                 {
-                    this.state = new Tuple<>(jsonElementEntry.getKey(), jsonElementEntry.getValue().getAsString());
+                    this.state = jsonElementEntry.getKey();
+                    this.cases = jsonElementEntry.getValue().getAsString();
                     break;
                 }
             }
         }
     }
 
+    @NotNull
     @Override
     public JsonElement serialize()
     {
-
         final JsonObject returnValue = new JsonObject();
 
-        if (this.or.isEmpty())
+        if ((this.or == null || this.or.isEmpty()) && (this.state != null && this.cases != null))
         {
-            returnValue.addProperty(this.state.getA(), this.state.getB());
+            returnValue.addProperty(this.state, this.cases);
         }
-        else
+        else if (this.or != null)
         {
             final JsonArray orArray = new JsonArray();
             for (MultipartOrJson multipartOrJson : this.or)
