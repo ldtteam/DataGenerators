@@ -26,7 +26,7 @@ public class XYZDoubleListJson implements IJsonSerializable
     {
     }
 
-    public XYZDoubleListJson(final int x, final int y, final int z)
+    public XYZDoubleListJson(final double x, final double y, final double z)
     {
         this.x = x;
         this.y = y;
