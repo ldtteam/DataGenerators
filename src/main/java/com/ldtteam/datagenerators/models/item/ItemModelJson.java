@@ -64,6 +64,21 @@ public class ItemModelJson implements IJsonSerializable
     @Nullable
     private List<OverrideCaseJson> overrides;
 
+    public ItemModelJson() {}
+
+    public ItemModelJson(@Nullable final String parent,
+                         @Nullable final Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> display,
+                         @Nullable final Map<String, String> textures,
+                         @Nullable final List<ModelElementJson> elements,
+                         @Nullable final List<OverrideCaseJson> overrides)
+    {
+        this.parent = parent;
+        this.display = display;
+        this.textures = textures;
+        this.elements = elements;
+        this.overrides = overrides;
+    }
+
     @NotNull
     @Override
     public JsonElement serialize()

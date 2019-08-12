@@ -20,6 +20,14 @@ public class OverrideCaseJson implements IJsonSerializable
     @NotNull
     private String model = "";
 
+    public OverrideCaseJson() {}
+
+    public OverrideCaseJson(@NotNull final OverridePredicateJson predicate, @NotNull final String model)
+    {
+        this.predicate = predicate;
+        this.model = model;
+    }
+
     @NotNull
     @Override
     public JsonElement serialize()
