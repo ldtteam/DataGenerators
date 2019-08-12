@@ -60,7 +60,7 @@ public class ElementRotationJson implements IJsonSerializable
     @Override
     public void deserialize(@NotNull final JsonElement jsonElement)
     {
-        final JsonObject rotationJson = new JsonObject();
+        final JsonObject rotationJson = jsonElement.getAsJsonObject();
 
         if (rotationJson.has("origin"))
         {
