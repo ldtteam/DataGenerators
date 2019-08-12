@@ -87,7 +87,7 @@ public class ElementRotationJson implements IJsonSerializable
         return origin;
     }
 
-    public void setOrigin(@NotNull XYZDoubleListJson origin)
+    public void setOrigin(@NotNull final XYZDoubleListJson origin)
     {
         this.origin = origin;
     }
@@ -98,7 +98,7 @@ public class ElementRotationJson implements IJsonSerializable
         return axis;
     }
 
-    public void setAxis(@NotNull ElementRotationAxisEnum axis)
+    public void setAxis(@NotNull final ElementRotationAxisEnum axis)
     {
         this.axis = axis;
     }
@@ -108,7 +108,7 @@ public class ElementRotationJson implements IJsonSerializable
         return angle;
     }
 
-    public void setAngle(float angle)
+    public void setAngle(final float angle)
     {
         this.angle = angle;
     }
@@ -118,7 +118,7 @@ public class ElementRotationJson implements IJsonSerializable
         return rescale;
     }
 
-    public void setRescale(boolean rescale)
+    public void setRescale(final boolean rescale)
     {
         this.rescale = rescale;
     }

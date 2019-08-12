@@ -39,7 +39,7 @@ public class OverridePredicateJson implements IJsonSerializable
     }
 
     @Override
-    public void deserialize(@NotNull JsonElement jsonElement)
+    public void deserialize(@NotNull final JsonElement jsonElement)
     {
         final JsonObject predicateJson = jsonElement.getAsJsonObject();
 
@@ -55,7 +55,7 @@ public class OverridePredicateJson implements IJsonSerializable
         return cases;
     }
 
-    public void setCases(@NotNull Map<String, Float> cases)
+    public void setCases(@NotNull final Map<String, Float> cases)
     {
         this.cases = cases;
     }

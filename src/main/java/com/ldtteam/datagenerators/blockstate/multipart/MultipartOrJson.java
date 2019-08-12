@@ -63,7 +63,7 @@ public class MultipartOrJson implements IJsonSerializable
         return states;
     }
 
-    public void setStates(@NotNull Map<String, String> states)
+    public void setStates(@NotNull final Map<String, String> states)
     {
         this.states = states;
     }

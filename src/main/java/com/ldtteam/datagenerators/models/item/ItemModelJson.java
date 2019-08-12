@@ -210,7 +210,7 @@ public class ItemModelJson implements IJsonSerializable
         return parent;
     }
 
-    public void setParent(@Nullable String parent)
+    public void setParent(@Nullable final String parent)
     {
         this.parent = parent;
     }
@@ -221,7 +221,7 @@ public class ItemModelJson implements IJsonSerializable
         return display;
     }
 
-    public void setDisplay(@Nullable Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> display)
+    public void setDisplay(@Nullable final Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> display)
     {
         this.display = display;
     }
@@ -232,7 +232,7 @@ public class ItemModelJson implements IJsonSerializable
         return textures;
     }
 
-    public void setTextures(@Nullable Map<String, String> textures)
+    public void setTextures(@Nullable final Map<String, String> textures)
     {
         this.textures = textures;
     }
@@ -243,7 +243,7 @@ public class ItemModelJson implements IJsonSerializable
         return elements;
     }
 
-    public void setElements(@Nullable List<ModelElementJson> elements)
+    public void setElements(@Nullable final List<ModelElementJson> elements)
     {
         this.elements = elements;
     }
@@ -254,7 +254,7 @@ public class ItemModelJson implements IJsonSerializable
         return overrides;
     }
 
-    public void setOverrides(@Nullable List<OverrideCaseJson> overrides)
+    public void setOverrides(@Nullable final List<OverrideCaseJson> overrides)
     {
         this.overrides = overrides;
     }

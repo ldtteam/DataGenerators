@@ -74,7 +74,7 @@ public class MultipartCaseJson implements IJsonSerializable
         return when;
     }
 
-    public void setWhen(@Nullable MultipartWhenJson when)
+    public void setWhen(@Nullable final MultipartWhenJson when)
     {
         this.when = when;
     }
@@ -85,7 +85,7 @@ public class MultipartCaseJson implements IJsonSerializable
         return apply;
     }
 
-    public void setApply(@NotNull BlockstateVariantJson apply)
+    public void setApply(@NotNull final BlockstateVariantJson apply)
     {
         this.apply = apply;
     }

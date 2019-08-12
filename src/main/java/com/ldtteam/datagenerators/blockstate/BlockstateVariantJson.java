@@ -91,7 +91,7 @@ public class BlockstateVariantJson implements IJsonSerializable
         return model;
     }
 
-    public void setModel(@Nullable BlockstateModelJson model)
+    public void setModel(@Nullable final BlockstateModelJson model)
     {
         this.model = model;
     }
@@ -102,7 +102,7 @@ public class BlockstateVariantJson implements IJsonSerializable
         return models;
     }
 
-    public void setModels(@Nullable List<BlockstateModelJson> models)
+    public void setModels(@Nullable final List<BlockstateModelJson> models)
     {
         this.models = models;
     }

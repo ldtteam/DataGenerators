@@ -72,7 +72,7 @@ public class XYZIntListJson implements IJsonSerializable
         return x;
     }
 
-    public void setX(int x)
+    public void setX(final int x)
     {
         this.x = x;
     }
@@ -82,7 +82,7 @@ public class XYZIntListJson implements IJsonSerializable
         return y;
     }
 
-    public void setY(int y)
+    public void setY(final int y)
     {
         this.y = y;
     }
@@ -92,7 +92,7 @@ public class XYZIntListJson implements IJsonSerializable
         return z;
     }
 
-    public void setZ(int z)
+    public void setZ(final int z)
     {
         this.z = z;
     }

@@ -108,7 +108,7 @@ public class MultipartWhenJson implements IJsonSerializable
         return or;
     }
 
-    public void setOr(@Nullable List<MultipartOrJson> or)
+    public void setOr(@Nullable final List<MultipartOrJson> or)
     {
         this.or = or;
     }
@@ -119,7 +119,7 @@ public class MultipartWhenJson implements IJsonSerializable
         return state;
     }
 
-    public void setState(@Nullable String state)
+    public void setState(@Nullable final String state)
     {
         this.state = state;
     }
@@ -130,7 +130,7 @@ public class MultipartWhenJson implements IJsonSerializable
         return cases;
     }
 
-    public void setCases(@Nullable String cases)
+    public void setCases(@Nullable final String cases)
     {
         this.cases = cases;
     }

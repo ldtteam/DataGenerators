@@ -41,7 +41,7 @@ public class OverrideCaseJson implements IJsonSerializable
     }
 
     @Override
-    public void deserialize(@NotNull JsonElement jsonElement)
+    public void deserialize(@NotNull final JsonElement jsonElement)
     {
         final JsonObject overrideCase = jsonElement.getAsJsonObject();
 
@@ -59,7 +59,7 @@ public class OverrideCaseJson implements IJsonSerializable
         return predicate;
     }
 
-    public void setPredicate(@NotNull OverridePredicateJson predicate)
+    public void setPredicate(@NotNull final OverridePredicateJson predicate)
     {
         this.predicate = predicate;
     }
@@ -70,7 +70,7 @@ public class OverrideCaseJson implements IJsonSerializable
         return model;
     }
 
-    public void setModel(@NotNull String model)
+    public void setModel(@NotNull final String model)
     {
         this.model = model;
     }

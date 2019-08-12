@@ -85,7 +85,7 @@ public class ElementFaceJson implements IJsonSerializable
     }
 
     @Override
-    public void deserialize(@NotNull JsonElement jsonElement)
+    public void deserialize(@NotNull final JsonElement jsonElement)
     {
         final JsonObject faceJson = jsonElement.getAsJsonObject();
 
@@ -114,7 +114,7 @@ public class ElementFaceJson implements IJsonSerializable
         return uv;
     }
 
-    public void setUv(@Nullable ElementFaceUVJson uv)
+    public void setUv(@Nullable final ElementFaceUVJson uv)
     {
         this.uv = uv;
     }
@@ -125,7 +125,7 @@ public class ElementFaceJson implements IJsonSerializable
         return texture;
     }
 
-    public void setTexture(@NotNull String texture)
+    public void setTexture(@NotNull final String texture)
     {
         this.texture = texture;
     }
@@ -136,7 +136,7 @@ public class ElementFaceJson implements IJsonSerializable
         return cullface;
     }
 
-    public void setCullface(@Nullable ElementFaceEnum cullface)
+    public void setCullface(@Nullable final ElementFaceEnum cullface)
     {
         this.cullface = cullface;
     }
@@ -146,7 +146,7 @@ public class ElementFaceJson implements IJsonSerializable
         return rotation;
     }
 
-    public void setRotation(int rotation)
+    public void setRotation(final int rotation)
     {
         this.rotation = rotation;
     }
@@ -156,7 +156,7 @@ public class ElementFaceJson implements IJsonSerializable
         return tintindex;
     }
 
-    public void setTintindex(int tintindex)
+    public void setTintindex(final int tintindex)
     {
         this.tintindex = tintindex;
     }

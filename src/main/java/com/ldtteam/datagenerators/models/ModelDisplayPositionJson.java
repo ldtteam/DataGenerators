@@ -89,7 +89,7 @@ public class ModelDisplayPositionJson implements IJsonSerializable
         return rotation;
     }
 
-    public void setRotation(@Nullable XYZIntListJson rotation)
+    public void setRotation(@Nullable final XYZIntListJson rotation)
     {
         this.rotation = rotation;
     }
@@ -100,7 +100,7 @@ public class ModelDisplayPositionJson implements IJsonSerializable
         return translation;
     }
 
-    public void setTranslation(@Nullable XYZIntListJson translation)
+    public void setTranslation(@Nullable final XYZIntListJson translation)
     {
         this.translation = translation;
     }
@@ -111,7 +111,7 @@ public class ModelDisplayPositionJson implements IJsonSerializable
         return scale;
     }
 
-    public void setScale(@Nullable XYZDoubleListJson scale)
+    public void setScale(@Nullable final XYZDoubleListJson scale)
     {
         this.scale = scale;
     }

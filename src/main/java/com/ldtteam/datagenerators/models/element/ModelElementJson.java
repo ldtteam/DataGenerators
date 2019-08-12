@@ -145,7 +145,7 @@ public class ModelElementJson implements IJsonSerializable
         return name;
     }
 
-    public void setName(@Nullable String name)
+    public void setName(@Nullable final String name)
     {
         this.name = name;
     }
@@ -156,7 +156,7 @@ public class ModelElementJson implements IJsonSerializable
         return from;
     }
 
-    public void setFrom(@NotNull XYZDoubleListJson from)
+    public void setFrom(@NotNull final XYZDoubleListJson from)
     {
         this.from = from;
     }
@@ -167,7 +167,7 @@ public class ModelElementJson implements IJsonSerializable
         return to;
     }
 
-    public void setTo(@NotNull XYZDoubleListJson to)
+    public void setTo(@NotNull final XYZDoubleListJson to)
     {
         this.to = to;
     }
@@ -177,7 +177,7 @@ public class ModelElementJson implements IJsonSerializable
         return shade;
     }
 
-    public void setShade(boolean shade)
+    public void setShade(final boolean shade)
     {
         this.shade = shade;
     }
@@ -188,7 +188,7 @@ public class ModelElementJson implements IJsonSerializable
         return rotation;
     }
 
-    public void setRotation(@Nullable ElementRotationJson rotation)
+    public void setRotation(@Nullable final ElementRotationJson rotation)
     {
         this.rotation = rotation;
     }
@@ -199,7 +199,7 @@ public class ModelElementJson implements IJsonSerializable
         return faces;
     }
 
-    public void setFaces(@NotNull Map<ElementFaceEnum, ElementFaceJson> faces)
+    public void setFaces(@NotNull final Map<ElementFaceEnum, ElementFaceJson> faces)
     {
         this.faces = faces;
     }

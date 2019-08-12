@@ -168,7 +168,7 @@ public class BlockModelJson implements IJsonSerializable
         return parent;
     }
 
-    public void setParent(@Nullable String parent)
+    public void setParent(@Nullable final String parent)
     {
         this.parent = parent;
     }
@@ -178,7 +178,7 @@ public class BlockModelJson implements IJsonSerializable
         return ambientOcclusion;
     }
 
-    public void setAmbientOcclusion(boolean ambientOcclusion)
+    public void setAmbientOcclusion(final boolean ambientOcclusion)
     {
         this.ambientOcclusion = ambientOcclusion;
     }
@@ -189,7 +189,7 @@ public class BlockModelJson implements IJsonSerializable
         return display;
     }
 
-    public void setDisplay(@Nullable Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> display)
+    public void setDisplay(@Nullable final Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> display)
     {
         this.display = display;
     }
@@ -200,7 +200,7 @@ public class BlockModelJson implements IJsonSerializable
         return textures;
     }
 
-    public void setTextures(@Nullable Map<String, String> textures)
+    public void setTextures(@Nullable final Map<String, String> textures)
     {
         this.textures = textures;
     }
@@ -211,7 +211,7 @@ public class BlockModelJson implements IJsonSerializable
         return elements;
     }
 
-    public void setElements(@Nullable List<ModelElementJson> elements)
+    public void setElements(@Nullable final List<ModelElementJson> elements)
     {
         this.elements = elements;
     }
