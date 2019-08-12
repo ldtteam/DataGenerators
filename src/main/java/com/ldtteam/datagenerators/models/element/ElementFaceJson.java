@@ -107,4 +107,57 @@ public class ElementFaceJson implements IJsonSerializable
         if (faceJson.has("tintindex"))
             this.tintindex = faceJson.get("tintindex").getAsInt();
     }
+
+    @Nullable
+    public ElementFaceUVJson getUv()
+    {
+        return uv;
+    }
+
+    public void setUv(@Nullable ElementFaceUVJson uv)
+    {
+        this.uv = uv;
+    }
+
+    @NotNull
+    public String getTexture()
+    {
+        return texture;
+    }
+
+    public void setTexture(@NotNull String texture)
+    {
+        this.texture = texture;
+    }
+
+    @Nullable
+    public ElementFaceEnum getCullface()
+    {
+        return cullface;
+    }
+
+    public void setCullface(@Nullable ElementFaceEnum cullface)
+    {
+        this.cullface = cullface;
+    }
+
+    public int getRotation()
+    {
+        return rotation;
+    }
+
+    public void setRotation(int rotation)
+    {
+        this.rotation = rotation;
+    }
+
+    public int getTintindex()
+    {
+        return tintindex;
+    }
+
+    public void setTintindex(int tintindex)
+    {
+        this.tintindex = tintindex;
+    }
 }

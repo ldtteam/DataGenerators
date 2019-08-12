@@ -82,4 +82,37 @@ public class ModelDisplayPositionJson implements IJsonSerializable
             this.scale.deserialize(positionJson.getAsJsonArray("scale"));
         }
     }
+
+    @Nullable
+    public XYZIntListJson getRotation()
+    {
+        return rotation;
+    }
+
+    public void setRotation(@Nullable XYZIntListJson rotation)
+    {
+        this.rotation = rotation;
+    }
+
+    @Nullable
+    public XYZIntListJson getTranslation()
+    {
+        return translation;
+    }
+
+    public void setTranslation(@Nullable XYZIntListJson translation)
+    {
+        this.translation = translation;
+    }
+
+    @Nullable
+    public XYZDoubleListJson getScale()
+    {
+        return scale;
+    }
+
+    public void setScale(@Nullable XYZDoubleListJson scale)
+    {
+        this.scale = scale;
+    }
 }

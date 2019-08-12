@@ -7,8 +7,6 @@ import com.ldtteam.datagenerators.IJsonSerializable;
 import com.ldtteam.datagenerators.models.ModelDisplayPositionJson;
 import com.ldtteam.datagenerators.models.ModelDisplayPositionsEnum;
 import com.ldtteam.datagenerators.models.element.ModelElementJson;
-import lombok.Getter;
-import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,8 +45,6 @@ public class BlockModelJson implements IJsonSerializable
      * (make sure to set the `particle` key, this is the particles displayed when then block is broken)
      */
     @Nullable
-    @Getter
-    @Setter
     private Map<String, String> textures;
 
     /**
@@ -164,5 +160,59 @@ public class BlockModelJson implements IJsonSerializable
             }
         }
 
+    }
+
+    @Nullable
+    public String getParent()
+    {
+        return parent;
+    }
+
+    public void setParent(@Nullable String parent)
+    {
+        this.parent = parent;
+    }
+
+    public boolean isAmbientOcclusion()
+    {
+        return ambientOcclusion;
+    }
+
+    public void setAmbientOcclusion(boolean ambientOcclusion)
+    {
+        this.ambientOcclusion = ambientOcclusion;
+    }
+
+    @Nullable
+    public Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> getDisplay()
+    {
+        return display;
+    }
+
+    public void setDisplay(@Nullable Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> display)
+    {
+        this.display = display;
+    }
+
+    @Nullable
+    public Map<String, String> getTextures()
+    {
+        return textures;
+    }
+
+    public void setTextures(@Nullable Map<String, String> textures)
+    {
+        this.textures = textures;
+    }
+
+    @Nullable
+    public List<ModelElementJson> getElements()
+    {
+        return elements;
+    }
+
+    public void setElements(@Nullable List<ModelElementJson> elements)
+    {
+        this.elements = elements;
     }
 }

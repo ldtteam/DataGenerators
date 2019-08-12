@@ -102,4 +102,26 @@ public class BlockstateJson implements IJsonSerializable
 
         return returnValue;
     }
+
+    @Nullable
+    public Map<String, BlockstateVariantJson> getVariants()
+    {
+        return variants;
+    }
+
+    public void setVariants(@Nullable Map<String, BlockstateVariantJson> variants)
+    {
+        this.variants = variants;
+    }
+
+    @Nullable
+    public List<MultipartCaseJson> getMultipartCases()
+    {
+        return multipartCases;
+    }
+
+    public void setMultipartCases(@Nullable List<MultipartCaseJson> multipartCases)
+    {
+        this.multipartCases = multipartCases;
+    }
 }

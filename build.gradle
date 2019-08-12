@@ -38,11 +38,8 @@ sourceSets {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.14.4-28.0.45'
-
-    compileOnly 'org.projectlombok:lombok:1.18.8'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
     
-    //compileOnly "com.intellij:annotations:+@jar"
+    compileOnly "com.intellij:annotations:+@jar"
     compile 'com.intellij:annotations:+@jar'
 }
 

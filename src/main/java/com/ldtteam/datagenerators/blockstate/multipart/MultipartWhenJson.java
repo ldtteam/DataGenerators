@@ -101,4 +101,37 @@ public class MultipartWhenJson implements IJsonSerializable
 
         return returnValue;
     }
+
+    @Nullable
+    public List<MultipartOrJson> getOr()
+    {
+        return or;
+    }
+
+    public void setOr(@Nullable List<MultipartOrJson> or)
+    {
+        this.or = or;
+    }
+
+    @Nullable
+    public String getState()
+    {
+        return state;
+    }
+
+    public void setState(@Nullable String state)
+    {
+        this.state = state;
+    }
+
+    @Nullable
+    public String getCases()
+    {
+        return cases;
+    }
+
+    public void setCases(@Nullable String cases)
+    {
+        this.cases = cases;
+    }
 }

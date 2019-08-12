@@ -138,4 +138,69 @@ public class ModelElementJson implements IJsonSerializable
             }
         }
     }
+
+    @Nullable
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(@Nullable String name)
+    {
+        this.name = name;
+    }
+
+    @NotNull
+    public XYZDoubleListJson getFrom()
+    {
+        return from;
+    }
+
+    public void setFrom(@NotNull XYZDoubleListJson from)
+    {
+        this.from = from;
+    }
+
+    @NotNull
+    public XYZDoubleListJson getTo()
+    {
+        return to;
+    }
+
+    public void setTo(@NotNull XYZDoubleListJson to)
+    {
+        this.to = to;
+    }
+
+    public boolean isShade()
+    {
+        return shade;
+    }
+
+    public void setShade(boolean shade)
+    {
+        this.shade = shade;
+    }
+
+    @Nullable
+    public ElementRotationJson getRotation()
+    {
+        return rotation;
+    }
+
+    public void setRotation(@Nullable ElementRotationJson rotation)
+    {
+        this.rotation = rotation;
+    }
+
+    @NotNull
+    public Map<ElementFaceEnum, ElementFaceJson> getFaces()
+    {
+        return faces;
+    }
+
+    public void setFaces(@NotNull Map<ElementFaceEnum, ElementFaceJson> faces)
+    {
+        this.faces = faces;
+    }
 }

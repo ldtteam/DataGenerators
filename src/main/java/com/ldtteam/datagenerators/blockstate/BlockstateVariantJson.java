@@ -84,4 +84,26 @@ public class BlockstateVariantJson implements IJsonSerializable
         }
         return new JsonObject();
     }
+
+    @Nullable
+    public BlockstateModelJson getModel()
+    {
+        return model;
+    }
+
+    public void setModel(@Nullable BlockstateModelJson model)
+    {
+        this.model = model;
+    }
+
+    @Nullable
+    public List<BlockstateModelJson> getModels()
+    {
+        return models;
+    }
+
+    public void setModels(@Nullable List<BlockstateModelJson> models)
+    {
+        this.models = models;
+    }
 }

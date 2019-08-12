@@ -114,4 +114,55 @@ public class BlockstateModelJson implements IJsonSerializable
 
         return returnValue;
     }
+
+    @NotNull
+    public String getModel()
+    {
+        return model;
+    }
+
+    public void setModel(@NotNull String model)
+    {
+        this.model = model;
+    }
+
+    public int getX()
+    {
+        return x;
+    }
+
+    public void setX(int x)
+    {
+        this.x = x;
+    }
+
+    public int getY()
+    {
+        return y;
+    }
+
+    public void setY(int y)
+    {
+        this.y = y;
+    }
+
+    public boolean isUvlock()
+    {
+        return uvlock;
+    }
+
+    public void setUvlock(boolean uvlock)
+    {
+        this.uvlock = uvlock;
+    }
+
+    public int getWeight()
+    {
+        return weight;
+    }
+
+    public void setWeight(int weight)
+    {
+        this.weight = weight;
+    }
 }
