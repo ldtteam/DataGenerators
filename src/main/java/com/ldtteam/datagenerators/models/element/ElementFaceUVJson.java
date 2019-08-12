@@ -51,7 +51,7 @@ public class ElementFaceUVJson implements IJsonSerializable
         returnValue.add(x2);
         returnValue.add(y2);
 
-        return new JsonArray();
+        return returnValue;
     }
 
     @Override
