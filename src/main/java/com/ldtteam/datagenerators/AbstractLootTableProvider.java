@@ -80,17 +80,17 @@ public abstract class AbstractLootTableProvider implements IDataProvider
     }
 
     /**
-     * Add a condition to a poolEntry.
-     * (This poolEntry will not be used if the condition is not met).
+     * Add a conditions to a poolEntry.
+     * (This poolEntry will not be used if the conditions is not met).
      *
      * @param poolEntry The poolEntry JSON object.
-     * @param condition The ResourceLocation for the condition.
+     * @param condition The ResourceLocation for the conditions.
      */
     private void addConditionToPoolEntry(final JsonObject poolEntry, final ResourceLocation condition)
     {
         final JsonObject conditionJson = new JsonObject();
 
-        conditionJson.addProperty("condition", condition.toString());
+        conditionJson.addProperty("conditions", condition.toString());
 
         if (poolEntry.getAsJsonArray("conditions") == null)
             poolEntry.add("conditions", new JsonArray());
