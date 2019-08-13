@@ -25,6 +25,18 @@ public class RecipeIngredientKeyJson implements IJsonSerializable
     @Nullable
     private List<RecipeIngredientJson> ingredients;
 
+    public RecipeIngredientKeyJson() {}
+
+    public RecipeIngredientKeyJson(@Nullable final RecipeIngredientJson ingredient)
+    {
+        this.ingredient = ingredient;
+    }
+
+    public RecipeIngredientKeyJson(@Nullable final List<RecipeIngredientJson> ingredients)
+    {
+        this.ingredients = ingredients;
+    }
+
     @NotNull
     @Override
     public JsonElement serialize()
