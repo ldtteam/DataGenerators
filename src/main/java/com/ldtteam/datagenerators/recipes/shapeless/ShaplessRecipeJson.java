@@ -19,7 +19,7 @@ public class ShaplessRecipeJson implements IJsonSerializable
      *  A namespaced ID indicating the type of serializer of the recipe.
      */
     @NotNull
-    private static final String TYPE = "minecraft:crafting_shapless";
+    private static final String TYPE = "minecraft:crafting_shapeless";
 
     /**
      * A string identifier.
