@@ -2,14 +2,14 @@ package com.ldtteam.datagenerators.loot_table.pool.entry;
 
 public enum EntryTypeEnum
 {
-    ITEM("item"),
-    TAG("tag"),
-    LOOT_TABLE("loot_Table"),
-    GROUP("group"),
-    ALTERNATIVES("alternatives"),
-    SEQUENCE("sequence"),
-    DYNAMIC("dynamic"),
-    EMPTY("empty");
+    ITEM("minecraft:item"),
+    TAG("minecraft:tag"),
+    LOOT_TABLE("minecraft:loot_Table"),
+    GROUP("minecraft:group"),
+    ALTERNATIVES("minecraft:alternatives"),
+    SEQUENCE("minecraft:sequence"),
+    DYNAMIC("minecraft:dynamic"),
+    EMPTY("minecraft:empty");
 
     final String name;
 

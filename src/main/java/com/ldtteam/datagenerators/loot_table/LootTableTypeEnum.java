@@ -3,13 +3,13 @@ package com.ldtteam.datagenerators.loot_table;
 public enum LootTableTypeEnum
 {
 
-    EMPTY("empty"),
-    ENTITY("entity"),
-    BLOCK("block"),
-    CHEST("chest"),
-    FISHING("fishing"),
-    ADVANCEMENT_REWARD("advancement_reward"),
-    GENERIC("generic");
+    EMPTY("minecraft:empty"),
+    ENTITY("minecraft:entity"),
+    BLOCK("minecraft:block"),
+    CHEST("minecraft:chest"),
+    FISHING("minecraft:fishing"),
+    ADVANCEMENT_REWARD("minecraft:advancement_reward"),
+    GENERIC("minecraft:generic");
 
     final String name;
 
