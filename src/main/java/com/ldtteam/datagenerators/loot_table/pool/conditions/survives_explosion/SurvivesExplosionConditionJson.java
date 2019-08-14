@@ -16,7 +16,6 @@ public class SurvivesExplosionConditionJson implements IPoolCondition
     @Override
     public JsonElement serialize()
     {
-
         final JsonObject returnValue = new JsonObject();
 
         returnValue.addProperty("condition", NAME);
@@ -28,10 +27,5 @@ public class SurvivesExplosionConditionJson implements IPoolCondition
     public void deserialize(@NotNull final JsonElement jsonElement)
     {
         //Nothing to deserialize, name is static
-    }
-
-    public static String getNAME()
-    {
-        return NAME;
     }
 }

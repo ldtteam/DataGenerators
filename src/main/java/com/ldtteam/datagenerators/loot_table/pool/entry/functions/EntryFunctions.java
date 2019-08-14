@@ -2,6 +2,7 @@ package com.ldtteam.datagenerators.loot_table.pool.entry.functions;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.ldtteam.datagenerators.loot_table.pool.entry.functions.copy_name.CopyNameFunctionJson;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,7 +15,7 @@ public class EntryFunctions
     public final static Map<String, Supplier<? extends IEntryFunction>> ENTRY_FUNCTIONS = new HashMap<>();
     static
     {
-        //haven't made any classes for this yet.
+        ENTRY_FUNCTIONS.put(CopyNameFunctionJson.NAME, CopyNameFunctionJson::new);
     }
 
     @Nullable
