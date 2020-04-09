@@ -21,7 +21,7 @@ public class ModelDisplayPositionJson implements IJsonSerializable
      * If the value is less then -80, it is displayed as -80.
      */
     @Nullable
-    private XYZIntListJson translation;
+    private XYZDoubleListJson translation;
 
     /***
      * Specifies the scale of the model according to the scheme [x, y, z].
@@ -34,7 +34,7 @@ public class ModelDisplayPositionJson implements IJsonSerializable
     {
     }
 
-    public ModelDisplayPositionJson(@Nullable final XYZIntListJson rotation, @Nullable final XYZIntListJson translation, @Nullable final XYZDoubleListJson scale)
+    public ModelDisplayPositionJson(@Nullable final XYZIntListJson rotation, @Nullable final XYZDoubleListJson translation, @Nullable final XYZDoubleListJson scale)
     {
         this.rotation = rotation;
         this.translation = translation;
@@ -72,7 +72,7 @@ public class ModelDisplayPositionJson implements IJsonSerializable
 
         if (positionJson.has("translation") && positionJson.get("translation").isJsonArray())
         {
-            this.translation = new XYZIntListJson();
+            this.translation = new XYZDoubleListJson();
             this.translation.deserialize(positionJson.getAsJsonArray("translation"));
         }
 
@@ -95,12 +95,12 @@ public class ModelDisplayPositionJson implements IJsonSerializable
     }
 
     @Nullable
-    public XYZIntListJson getTranslation()
+    public XYZDoubleListJson getTranslation()
     {
         return translation;
     }
 
-    public void setTranslation(@Nullable final XYZIntListJson translation)
+    public void setTranslation(@Nullable final XYZDoubleListJson translation)
     {
         this.translation = translation;
     }
