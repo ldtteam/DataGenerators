@@ -7,20 +7,19 @@ import com.ldtteam.datagenerators.IJsonSerializable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class SoundsJson implements IJsonSerializable
 {
     @NotNull
-    final Map<String[], List<String>> sounds = new HashMap<>();
+    private Map<String[], List<String>> sounds;
 
     public SoundsJson() {}
 
     public SoundsJson(@NotNull final Map<String[], List<String>> sounds)
     {
-        this.sounds.putAll(sounds);
+        this.sounds = sounds;
     }
 
     @NotNull
