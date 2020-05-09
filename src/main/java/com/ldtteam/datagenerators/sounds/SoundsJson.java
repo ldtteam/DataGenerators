@@ -22,6 +22,37 @@ public class SoundsJson implements IJsonSerializable
         this.sounds = sounds;
     }
 
+    /**
+     * Creates a sound json object for the list of names and its properties
+     *
+     * @param category   category to set
+     * @param properties JsonObject properties to use
+     * @param names      List of names to set
+     * @return new JsonObject
+     */
+    public static JsonObject createSoundJson(final String category, final JsonObject properties, final List<String> names)
+    {
+        JsonObject sound = new JsonObject();
+        sound.addProperty("category", category);
+
+        final JsonArray containedSoundList = new JsonArray();
+        for (final String name : names)
+        {
+            JsonObject sound1 = new JsonObject();
+            sound1.addProperty("name", name);
+
+            for (Map.Entry<String, JsonElement> entry : properties.entrySet())
+            {
+                sound1.add(entry.getKey(), entry.getValue());
+            }
+
+            containedSoundList.add(sound1);
+        }
+
+        sound.add("sounds", containedSoundList);
+        return sound;
+    }
+
     @NotNull
     @Override
     public JsonElement serialize()
