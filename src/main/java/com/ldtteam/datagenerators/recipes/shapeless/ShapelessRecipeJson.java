@@ -57,7 +57,7 @@ public class ShapelessRecipeJson implements IJsonSerializable
         this.result = result;
     }
 
-    private ShapelessRecipeJson(
+    public ShapelessRecipeJson(
       @Nullable final String group,
       @NotNull final List<RecipeIngredientKeyJson> ingredients,
       @NotNull final RecipeResultJson result,

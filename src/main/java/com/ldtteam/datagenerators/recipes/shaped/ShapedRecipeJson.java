@@ -68,7 +68,7 @@ public class ShapedRecipeJson implements IJsonSerializable
         this.result = result;
     }
 
-    private ShapedRecipeJson(
+    public ShapedRecipeJson(
       @Nullable final String group,
       @NotNull final ShapedPatternJson pattern,
       @NotNull final Map<String, RecipeIngredientKeyJson> key, @NotNull final RecipeResultJson result, @NotNull final String recipeType)
