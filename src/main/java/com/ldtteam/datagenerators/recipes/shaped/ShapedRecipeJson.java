@@ -47,6 +47,14 @@ public class ShapedRecipeJson implements IJsonSerializable
     @NotNull
     private RecipeResultJson result = new RecipeResultJson();
 
+    /**
+     * The type of the recipe.
+     * By default defines a vanilla shaped recipe.
+     * Use the overloaded constructor to define a custom type.
+     */
+    @NotNull
+    private String recipeType = TYPE;
+
     public ShapedRecipeJson() {}
 
     public ShapedRecipeJson(@Nullable final String group,
@@ -60,13 +68,25 @@ public class ShapedRecipeJson implements IJsonSerializable
         this.result = result;
     }
 
+    private ShapedRecipeJson(
+      @Nullable final String group,
+      @NotNull final ShapedPatternJson pattern,
+      @NotNull final Map<String, RecipeIngredientKeyJson> key, @NotNull final RecipeResultJson result, @NotNull final String recipeType)
+    {
+        this.group = group;
+        this.pattern = pattern;
+        this.key = key;
+        this.result = result;
+        this.recipeType = recipeType;
+    }
+
     @NotNull
     @Override
     public JsonElement serialize()
     {
         final JsonObject returnValue = new JsonObject();
 
-        returnValue.addProperty("type", TYPE);
+        returnValue.addProperty("type", recipeType);
 
         if (this.group != null)
             returnValue.addProperty("group", this.group);
@@ -90,6 +110,9 @@ public class ShapedRecipeJson implements IJsonSerializable
     {
         final JsonObject recipeJson = jsonElement.getAsJsonObject();
 
+        if (recipeJson.has("type"))
+            this.recipeType = recipeJson.get("type").getAsString();
+
         if (recipeJson.has("group"))
             this.group = recipeJson.get("group").getAsString();
 
@@ -106,9 +129,15 @@ public class ShapedRecipeJson implements IJsonSerializable
     }
 
     @NotNull
-    public static String getTYPE()
+    public static String getDefaultType()
     {
         return TYPE;
+    }
+
+    @NotNull
+    private String getRecipeType()
+    {
+        return recipeType;
     }
 
     @Nullable

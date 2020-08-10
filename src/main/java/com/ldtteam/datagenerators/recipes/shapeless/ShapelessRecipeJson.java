@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShaplessRecipeJson implements IJsonSerializable
+public class ShapelessRecipeJson implements IJsonSerializable
 {
 
     /**
@@ -38,9 +38,17 @@ public class ShaplessRecipeJson implements IJsonSerializable
     @NotNull
     private RecipeResultJson result = new RecipeResultJson();
 
-    public ShaplessRecipeJson() {}
+    /**
+     * The type of the recipe.
+     * By default defines a vanilla shapeless recipe.
+     * Use the overloaded constructor to define a custom type.
+     */
+    @NotNull
+    private String recipeType = TYPE;
 
-    public ShaplessRecipeJson(@Nullable final String group,
+    public ShapelessRecipeJson() {}
+
+    public ShapelessRecipeJson(@Nullable final String group,
                               @NotNull final List<RecipeIngredientKeyJson> ingredients,
                               @NotNull final RecipeResultJson result)
     {
@@ -49,13 +57,25 @@ public class ShaplessRecipeJson implements IJsonSerializable
         this.result = result;
     }
 
+    private ShapelessRecipeJson(
+      @Nullable final String group,
+      @NotNull final List<RecipeIngredientKeyJson> ingredients,
+      @NotNull final RecipeResultJson result,
+      @NotNull final String recipeType)
+    {
+        this.group = group;
+        this.ingredients = ingredients;
+        this.result = result;
+        this.recipeType = recipeType;
+    }
+
     @NotNull
     @Override
     public JsonElement serialize()
     {
         final JsonObject returnValue = new JsonObject();
 
-        returnValue.addProperty("type", TYPE);
+        returnValue.addProperty("type", recipeType);
 
         if (this.group != null)
             returnValue.addProperty("group", this.group);
@@ -77,6 +97,9 @@ public class ShaplessRecipeJson implements IJsonSerializable
     {
         final JsonObject recipeJson = jsonElement.getAsJsonObject();
 
+        if (recipeJson.has("type"))
+            this.recipeType = recipeJson.get("type").getAsString();
+
         if (recipeJson.has("group"))
             this.group = recipeJson.get("group").getAsString();
 
@@ -91,9 +114,15 @@ public class ShaplessRecipeJson implements IJsonSerializable
     }
 
     @NotNull
-    public static String getTYPE()
+    public static String getDefaultType()
     {
         return TYPE;
+    }
+
+    @NotNull
+    private String getRecipeType()
+    {
+        return recipeType;
     }
 
     @Nullable
