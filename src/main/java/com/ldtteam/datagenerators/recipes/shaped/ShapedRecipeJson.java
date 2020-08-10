@@ -140,7 +140,7 @@ public class ShapedRecipeJson implements IJsonSerializable
         return recipeType;
     }
 
-    private void setRecipeType(@NotNull final String recipeType)
+    public void setRecipeType(@NotNull final String recipeType)
     {
         this.recipeType = recipeType;
     }
