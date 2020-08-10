@@ -8,7 +8,6 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:latest.release"
     }
 }
 
@@ -23,7 +22,6 @@ apply plugin: 'maven-publish'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
-apply plugin: 'com.jfrog.artifactory'
 
 sourceSets {
     main {
@@ -148,18 +146,6 @@ publishing {
                     groupIdNode.setTextContent(groupId.replace("deobf.", ""))
                 }
             }
-        }
-    }
-}
-
-//Notify artifactory of what to publish.
-artifactory {
-    publish {
-        defaults {
-            publications('maven')
-            publishBuildInfo = true   //Publish build-info to Artifactory (true by default)
-            publishArtifacts = true   //Publish artifacts to Artifactory (true by default)
-            publishPom = true   //Publish generated POM files to Artifactory (true by default).
         }
     }
 }
