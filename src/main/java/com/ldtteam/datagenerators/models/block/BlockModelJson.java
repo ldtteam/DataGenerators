@@ -3,6 +3,7 @@ package com.ldtteam.datagenerators.models.block;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import com.ldtteam.datagenerators.IJsonSerializable;
 import com.ldtteam.datagenerators.models.ModelDisplayPositionJson;
 import com.ldtteam.datagenerators.models.ModelDisplayPositionsEnum;
@@ -55,6 +56,31 @@ public class BlockModelJson implements IJsonSerializable
     @Nullable
     private List<ModelElementJson> elements;
 
+    /**
+     * An optional loader used to load the model from json.
+     */
+    @Nullable
+    private String loader;
+
+    public BlockModelJson(
+      @Nullable final String parent,
+      final boolean ambientOcclusion,
+      @Nullable final Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> display,
+      @Nullable final Map<String, String> textures,
+      @Nullable final List<ModelElementJson> elements, @Nullable final String loader)
+    {
+        this.parent = parent;
+        this.ambientOcclusion = ambientOcclusion;
+        this.display = display;
+        this.textures = textures;
+        this.elements = elements;
+        this.loader = loader;
+    }
+
+    public BlockModelJson()
+    {
+    }
+
     @NotNull
     @Override
     public JsonElement serialize()
@@ -95,6 +121,11 @@ public class BlockModelJson implements IJsonSerializable
                 elementArray.add(element.serialize());
             }
             returnValue.add("elements", elementArray);
+        }
+
+        if (this.loader != null)
+        {
+            returnValue.addProperty("loader", loader);
         }
 
         return returnValue;
@@ -160,6 +191,10 @@ public class BlockModelJson implements IJsonSerializable
             }
         }
 
+        if (modelJson.has("loader"))
+        {
+            this.loader = modelJson.get("loader").getAsString();
+        }
     }
 
     @Nullable
@@ -214,5 +249,16 @@ public class BlockModelJson implements IJsonSerializable
     public void setElements(@Nullable final List<ModelElementJson> elements)
     {
         this.elements = elements;
+    }
+
+    @Nullable
+    public String getLoader()
+    {
+        return loader;
+    }
+
+    public void setLoader(@Nullable final String loader)
+    {
+        this.loader = loader;
     }
 }

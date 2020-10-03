@@ -64,19 +64,27 @@ public class ItemModelJson implements IJsonSerializable
     @Nullable
     private List<OverrideCaseJson> overrides;
 
+    /**
+     * An optional loader used to load the model from json.
+     */
+    @Nullable
+    private String loader;
+
     public ItemModelJson() {}
 
     public ItemModelJson(@Nullable final String parent,
                          @Nullable final Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> display,
                          @Nullable final Map<String, String> textures,
                          @Nullable final List<ModelElementJson> elements,
-                         @Nullable final List<OverrideCaseJson> overrides)
+                         @Nullable final List<OverrideCaseJson> overrides,
+                         @Nullable final String loader)
     {
         this.parent = parent;
         this.display = display;
         this.textures = textures;
         this.elements = elements;
         this.overrides = overrides;
+        this.loader = loader;
     }
 
     @NotNull
@@ -126,6 +134,11 @@ public class ItemModelJson implements IJsonSerializable
                 overrideArray.add(override.serialize());
             }
             returnValue.add("overrides", overrideArray);
+        }
+
+        if (this.loader != null)
+        {
+            returnValue.addProperty("loader", loader);
         }
 
         return returnValue;
@@ -202,6 +215,11 @@ public class ItemModelJson implements IJsonSerializable
                 this.overrides.add(overrideJson);
             }
         }
+
+        if (modelJson.has("loader"))
+        {
+            this.loader = modelJson.get("loader").getAsString();
+        }
     }
 
     @Nullable
@@ -257,5 +275,16 @@ public class ItemModelJson implements IJsonSerializable
     public void setOverrides(@Nullable final List<OverrideCaseJson> overrides)
     {
         this.overrides = overrides;
+    }
+
+    @Nullable
+    public String getLoader()
+    {
+        return loader;
+    }
+
+    public void setLoader(@Nullable final String loader)
+    {
+        this.loader = loader;
     }
 }
