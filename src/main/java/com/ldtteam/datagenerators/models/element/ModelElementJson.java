@@ -64,7 +64,7 @@ public class ModelElementJson implements IJsonSerializable
         this.to = to;
         this.shade = shade;
         this.rotation = rotation;
-        this.faces = Utils.assertTreeMap(faces);
+        this.faces = Utils.ensureTreeMap(faces);
     }
 
     @NotNull
@@ -201,6 +201,6 @@ public class ModelElementJson implements IJsonSerializable
 
     public void setFaces(@NotNull final Map<ElementFaceEnum, ElementFaceJson> faces)
     {
-        this.faces = Utils.assertTreeMap(faces);
+        this.faces = Utils.ensureTreeMap(faces);
     }
 }

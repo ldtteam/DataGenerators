@@ -21,7 +21,7 @@ public class SoundsJson implements IJsonSerializable
 
     public SoundsJson(@NotNull final Map<String[], List<String>> sounds)
     {
-        this.sounds = Utils.assertTreeMap(sounds);
+        this.sounds = Utils.ensureTreeMap(sounds);
     }
 
     /**

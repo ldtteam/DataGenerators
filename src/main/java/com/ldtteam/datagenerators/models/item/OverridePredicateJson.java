@@ -22,7 +22,7 @@ public class OverridePredicateJson implements IJsonSerializable
 
     public OverridePredicateJson(@NotNull final Map<String, Float> cases)
     {
-        this.cases = Utils.assertTreeMap(cases);
+        this.cases = Utils.ensureTreeMap(cases);
     }
 
     @NotNull
@@ -58,6 +58,6 @@ public class OverridePredicateJson implements IJsonSerializable
 
     public void setCases(@NotNull final Map<String, Float> cases)
     {
-        this.cases = Utils.assertTreeMap(cases);
+        this.cases = Utils.ensureTreeMap(cases);
     }
 }

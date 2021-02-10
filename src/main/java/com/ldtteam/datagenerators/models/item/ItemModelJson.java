@@ -80,8 +80,8 @@ public class ItemModelJson implements IJsonSerializable
                          @Nullable final String loader)
     {
         this.parent = parent;
-        this.display = Utils.assertTreeMap(display);
-        this.textures = Utils.assertTreeMap(textures);
+        this.display = Utils.ensureTreeMap(display);
+        this.textures = Utils.ensureTreeMap(textures);
         this.elements = elements;
         this.overrides = overrides;
         this.loader = loader;
@@ -241,7 +241,7 @@ public class ItemModelJson implements IJsonSerializable
 
     public void setDisplay(@Nullable final Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> display)
     {
-        this.display = Utils.assertTreeMap(display);
+        this.display = Utils.ensureTreeMap(display);
     }
 
     @Nullable
@@ -252,7 +252,7 @@ public class ItemModelJson implements IJsonSerializable
 
     public void setTextures(@Nullable final Map<String, String> textures)
     {
-        this.textures = Utils.assertTreeMap(textures);
+        this.textures = Utils.ensureTreeMap(textures);
     }
 
     @Nullable

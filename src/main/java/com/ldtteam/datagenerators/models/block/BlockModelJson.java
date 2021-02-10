@@ -71,8 +71,8 @@ public class BlockModelJson implements IJsonSerializable
     {
         this.parent = parent;
         this.ambientOcclusion = ambientOcclusion;
-        this.display = Utils.assertTreeMap(display);
-        this.textures = Utils.assertTreeMap(textures);
+        this.display = Utils.ensureTreeMap(display);
+        this.textures = Utils.ensureTreeMap(textures);
         this.elements = elements;
         this.loader = loader;
     }
@@ -226,7 +226,7 @@ public class BlockModelJson implements IJsonSerializable
 
     public void setDisplay(@Nullable final Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> display)
     {
-        this.display = Utils.assertTreeMap(display);
+        this.display = Utils.ensureTreeMap(display);
     }
 
     @Nullable
@@ -237,7 +237,7 @@ public class BlockModelJson implements IJsonSerializable
 
     public void setTextures(@Nullable final Map<String, String> textures)
     {
-        this.textures = Utils.assertTreeMap(textures);
+        this.textures = Utils.ensureTreeMap(textures);
     }
 
     @Nullable

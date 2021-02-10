@@ -30,7 +30,7 @@ public class MultipartOrJson implements IJsonSerializable
 
     public MultipartOrJson(@NotNull final Map<String, String> orElements)
     {
-        this.states = Utils.assertTreeMap(orElements);
+        this.states = Utils.ensureTreeMap(orElements);
     }
 
     @Override
@@ -65,6 +65,6 @@ public class MultipartOrJson implements IJsonSerializable
 
     public void setStates(@NotNull final Map<String, String> states)
     {
-        this.states = Utils.assertTreeMap(states);
+        this.states = Utils.ensureTreeMap(states);
     }
 }

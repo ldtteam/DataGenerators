@@ -65,7 +65,7 @@ public class ShapedRecipeJson implements IJsonSerializable
     {
         this.group = group;
         this.pattern = pattern;
-        this.key = Utils.assertTreeMap(key);
+        this.key = Utils.ensureTreeMap(key);
         this.result = result;
     }
 
@@ -76,7 +76,7 @@ public class ShapedRecipeJson implements IJsonSerializable
     {
         this.group = group;
         this.pattern = pattern;
-        this.key = Utils.assertTreeMap(key);
+        this.key = Utils.ensureTreeMap(key);
         this.result = result;
         this.recipeType = recipeType;
     }
@@ -176,7 +176,7 @@ public class ShapedRecipeJson implements IJsonSerializable
 
     public void setKey(@NotNull final Map<String, RecipeIngredientKeyJson> key)
     {
-        this.key = Utils.assertTreeMap(key);
+        this.key = Utils.ensureTreeMap(key);
     }
 
     @NotNull

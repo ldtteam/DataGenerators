@@ -12,7 +12,7 @@ public class Utils
     {
     }
 
-    public static <K, V> Map<K, V> assertTreeMap(final Map<K, V> map)
+    public static <K, V> Map<K, V> ensureTreeMap(final Map<K, V> map)
     {
         return map instanceof TreeMap ? map : new TreeMap<>(map);
     }

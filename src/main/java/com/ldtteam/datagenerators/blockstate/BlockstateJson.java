@@ -36,7 +36,7 @@ public class BlockstateJson implements IJsonSerializable
 
     public BlockstateJson(@Nullable final Map<String, BlockstateVariantJson> variants)
     {
-        this.variants = Utils.assertTreeMap(variants);
+        this.variants = Utils.ensureTreeMap(variants);
     }
 
     public BlockstateJson(@Nullable final List<MultipartCaseJson> multipartCases)
@@ -112,7 +112,7 @@ public class BlockstateJson implements IJsonSerializable
 
     public void setVariants(@Nullable final Map<String, BlockstateVariantJson> variants)
     {
-        this.variants = Utils.assertTreeMap(variants);
+        this.variants = Utils.ensureTreeMap(variants);
     }
 
     @Nullable
