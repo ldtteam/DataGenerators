@@ -4,22 +4,24 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
+import com.ldtteam.datagenerators.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class SoundsJson implements IJsonSerializable
 {
     @NotNull
-    private Map<String[], List<String>> sounds;
+    private Map<String[], List<String>> sounds = new TreeMap<>();
 
     public SoundsJson() {}
 
     public SoundsJson(@NotNull final Map<String[], List<String>> sounds)
     {
-        this.sounds = sounds;
+        this.sounds = Utils.assertTreeMap(sounds);
     }
 
     /**

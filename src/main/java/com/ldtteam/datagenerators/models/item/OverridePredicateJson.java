@@ -3,9 +3,10 @@ package com.ldtteam.datagenerators.models.item;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
+import com.ldtteam.datagenerators.Utils;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 
 public class OverridePredicateJson implements IJsonSerializable
@@ -15,13 +16,13 @@ public class OverridePredicateJson implements IJsonSerializable
      *  Holds the cases.
      */
     @NotNull
-    private Map<String, Float> cases = new HashMap<>();
+    private Map<String, Float> cases = new TreeMap<>();
 
     public OverridePredicateJson() {}
 
     public OverridePredicateJson(@NotNull final Map<String, Float> cases)
     {
-        this.cases = cases;
+        this.cases = Utils.assertTreeMap(cases);
     }
 
     @NotNull
@@ -57,6 +58,6 @@ public class OverridePredicateJson implements IJsonSerializable
 
     public void setCases(@NotNull final Map<String, Float> cases)
     {
-        this.cases = cases;
+        this.cases = Utils.assertTreeMap(cases);
     }
 }

@@ -4,14 +4,15 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
+import com.ldtteam.datagenerators.Utils;
 import com.ldtteam.datagenerators.blockstate.multipart.MultipartCaseJson;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class BlockstateJson implements IJsonSerializable
 {
@@ -35,7 +36,7 @@ public class BlockstateJson implements IJsonSerializable
 
     public BlockstateJson(@Nullable final Map<String, BlockstateVariantJson> variants)
     {
-        this.variants = variants;
+        this.variants = Utils.assertTreeMap(variants);
     }
 
     public BlockstateJson(@Nullable final List<MultipartCaseJson> multipartCases)
@@ -62,7 +63,7 @@ public class BlockstateJson implements IJsonSerializable
         else
         {
             if (this.variants == null)
-                this.variants = new HashMap<>();
+                this.variants = new TreeMap<>();
 
             for (Map.Entry<String, JsonElement> jsonElementEntry : blockstateJson.getAsJsonObject("variants").entrySet())
             {
@@ -111,7 +112,7 @@ public class BlockstateJson implements IJsonSerializable
 
     public void setVariants(@Nullable final Map<String, BlockstateVariantJson> variants)
     {
-        this.variants = variants;
+        this.variants = Utils.assertTreeMap(variants);
     }
 
     @Nullable
