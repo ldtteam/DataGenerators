@@ -40,7 +40,7 @@ public class LangJson implements IJsonSerializable
             returnValue.addProperty(langEntry.getKey(), langEntry.getValue());
         }
         // put marker to distinguish datagen and normal
-        returnValue.addProperty("__comment", "Datagen-only lang entries below");
+        returnValue.addProperty("__comment", "Datagen-only lang entries above");
         // put rest of old lang file
         for (final Map.Entry<String, String> langEntry : copyOld.entrySet())
         {
