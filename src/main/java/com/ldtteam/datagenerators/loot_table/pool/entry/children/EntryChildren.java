@@ -6,16 +6,16 @@ import com.ldtteam.datagenerators.loot_table.pool.entry.EntryTypeEnum;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
 public class EntryChildren
 {
-    public final static Map<EntryTypeEnum, Supplier<? extends IEntryChild>> ENTRY_CHILDREN = new HashMap<>();
+    public final static Map<EntryTypeEnum, Supplier<? extends IEntryChild>> ENTRY_CHILDREN = new TreeMap<>();
     static
     {
-        //haven't made any classes for this yet.
+        // haven't made any classes for this yet.
     }
 
     @Nullable

@@ -6,13 +6,13 @@ import com.ldtteam.datagenerators.loot_table.pool.entry.functions.copy_name.Copy
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
 public class EntryFunctions
 {
-    public final static Map<String, Supplier<? extends IEntryFunction>> ENTRY_FUNCTIONS = new HashMap<>();
+    public final static Map<String, Supplier<? extends IEntryFunction>> ENTRY_FUNCTIONS = new TreeMap<>();
     static
     {
         ENTRY_FUNCTIONS.put(CopyNameFunctionJson.NAME, CopyNameFunctionJson::new);

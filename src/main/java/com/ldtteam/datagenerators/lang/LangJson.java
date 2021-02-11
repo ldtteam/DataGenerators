@@ -3,22 +3,26 @@ package com.ldtteam.datagenerators.lang;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
+import com.ldtteam.datagenerators.Utils;
+
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class LangJson implements IJsonSerializable
 {
 
     @NotNull
-    private Map<String, String> lang = new HashMap<>();
+    private Map<String, String> lang = new TreeMap<>();
+    private Map<String, String> oldLang = new LinkedHashMap<>();
 
     public LangJson() {}
 
     public LangJson(@NotNull final Map<String, String> lang)
     {
-        this.lang = lang;
+        this.lang = Utils.ensureTreeMap(lang);
     }
 
     @NotNull
@@ -27,7 +31,18 @@ public class LangJson implements IJsonSerializable
     {
         final JsonObject returnValue = new JsonObject();
 
-        for (Map.Entry<String, String> langEntry : this.lang.entrySet())
+        final Map<String, String> copyOld = new LinkedHashMap<>(oldLang);
+        copyOld.keySet().removeAll(lang.keySet());
+
+        // put datagen on top of lang file
+        for (final Map.Entry<String, String> langEntry : this.lang.entrySet())
+        {
+            returnValue.addProperty(langEntry.getKey(), langEntry.getValue());
+        }
+        // put marker to distinguish datagen and normal
+        returnValue.addProperty("__comment", "Datagen-only lang entries above");
+        // put rest of old lang file
+        for (final Map.Entry<String, String> langEntry : copyOld.entrySet())
         {
             returnValue.addProperty(langEntry.getKey(), langEntry.getValue());
         }
@@ -46,6 +61,14 @@ public class LangJson implements IJsonSerializable
         }
     }
 
+    public void deserializeOldLang(@NotNull final JsonElement jsonElement)
+    {
+        for (final Map.Entry<String, JsonElement> langEntry : jsonElement.getAsJsonObject().entrySet())
+        {
+            this.oldLang.put(langEntry.getKey(), langEntry.getValue().getAsString());
+        }
+    }
+
     @NotNull
     public Map<String, String> getLang()
     {
@@ -54,7 +77,7 @@ public class LangJson implements IJsonSerializable
 
     public void setLang(@NotNull final Map<String, String> lang)
     {
-        this.lang = lang;
+        this.lang = Utils.ensureTreeMap(lang);
     }
 
     public String put(final String key, final String value)

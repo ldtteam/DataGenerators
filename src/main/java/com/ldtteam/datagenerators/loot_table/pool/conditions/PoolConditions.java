@@ -6,13 +6,13 @@ import com.ldtteam.datagenerators.loot_table.pool.conditions.survives_explosion.
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
 public class PoolConditions
 {
-    public final static Map<String, Supplier<? extends IPoolCondition>> POOL_CONDITIONS = new HashMap<>();
+    public final static Map<String, Supplier<? extends IPoolCondition>> POOL_CONDITIONS = new TreeMap<>();
     static
     {
         POOL_CONDITIONS.put(SurvivesExplosionConditionJson.NAME, SurvivesExplosionConditionJson::new);

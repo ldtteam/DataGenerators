@@ -3,16 +3,16 @@ package com.ldtteam.datagenerators.models.element;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
+import com.ldtteam.datagenerators.Utils;
 import com.ldtteam.datagenerators.models.XYZDoubleListJson;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 
 public class ModelElementJson implements IJsonSerializable
 {
-
     /**
      * Not used by minecraft, however is nice to have for readability.
      */
@@ -46,7 +46,7 @@ public class ModelElementJson implements IJsonSerializable
      * Holds all the faces of the cube. If a face is left out, it will not be rendered.
      */
     @NotNull
-    private Map<ElementFaceEnum, ElementFaceJson> faces = new HashMap<>();
+    private Map<ElementFaceEnum, ElementFaceJson> faces = new TreeMap<>();
 
     public ModelElementJson()
     {
@@ -64,7 +64,7 @@ public class ModelElementJson implements IJsonSerializable
         this.to = to;
         this.shade = shade;
         this.rotation = rotation;
-        this.faces = faces;
+        this.faces = Utils.ensureTreeMap(faces);
     }
 
     @NotNull
@@ -201,6 +201,6 @@ public class ModelElementJson implements IJsonSerializable
 
     public void setFaces(@NotNull final Map<ElementFaceEnum, ElementFaceJson> faces)
     {
-        this.faces = faces;
+        this.faces = Utils.ensureTreeMap(faces);
     }
 }

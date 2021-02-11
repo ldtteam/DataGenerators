@@ -3,12 +3,13 @@ package com.ldtteam.datagenerators.recipes.shaped;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
+import com.ldtteam.datagenerators.Utils;
 import com.ldtteam.datagenerators.recipes.RecipeIngredientKeyJson;
 import com.ldtteam.datagenerators.recipes.RecipeResultJson;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 
 public class ShapedRecipeJson implements IJsonSerializable
@@ -39,7 +40,7 @@ public class ShapedRecipeJson implements IJsonSerializable
      * All keys used for this shaped crafting recipe.
      */
     @NotNull
-    private Map<String, RecipeIngredientKeyJson> key = new HashMap<>();
+    private Map<String, RecipeIngredientKeyJson> key = new TreeMap<>();
 
     /**
      * The output item of the recipe.
@@ -64,7 +65,7 @@ public class ShapedRecipeJson implements IJsonSerializable
     {
         this.group = group;
         this.pattern = pattern;
-        this.key = key;
+        this.key = Utils.ensureTreeMap(key);
         this.result = result;
     }
 
@@ -75,7 +76,7 @@ public class ShapedRecipeJson implements IJsonSerializable
     {
         this.group = group;
         this.pattern = pattern;
-        this.key = key;
+        this.key = Utils.ensureTreeMap(key);
         this.result = result;
         this.recipeType = recipeType;
     }
@@ -175,7 +176,7 @@ public class ShapedRecipeJson implements IJsonSerializable
 
     public void setKey(@NotNull final Map<String, RecipeIngredientKeyJson> key)
     {
-        this.key = key;
+        this.key = Utils.ensureTreeMap(key);
     }
 
     @NotNull

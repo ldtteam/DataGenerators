@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
+import com.ldtteam.datagenerators.Utils;
 import com.ldtteam.datagenerators.models.ModelDisplayPositionJson;
 import com.ldtteam.datagenerators.models.ModelDisplayPositionsEnum;
 import com.ldtteam.datagenerators.models.element.ModelElementJson;
@@ -11,13 +12,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.List;
 import java.util.Map;
 
 public class ItemModelJson implements IJsonSerializable
 {
-
     /**
      * parent: Loads a different model from the given path, starting in assets/<namespace>/models.
      * If both "parent" and "elements" are set, the "elements" tag overrides the "elements" tag from the previous model.
@@ -80,8 +80,8 @@ public class ItemModelJson implements IJsonSerializable
                          @Nullable final String loader)
     {
         this.parent = parent;
-        this.display = display;
-        this.textures = textures;
+        this.display = Utils.ensureTreeMap(display);
+        this.textures = Utils.ensureTreeMap(textures);
         this.elements = elements;
         this.overrides = overrides;
         this.loader = loader;
@@ -155,7 +155,7 @@ public class ItemModelJson implements IJsonSerializable
         if (modelJson.has("display"))
         {
             if (this.display == null)
-                this.display = new HashMap<>();
+                this.display = new TreeMap<>();
 
             final JsonObject displayObject = modelJson.getAsJsonObject("display");
 
@@ -176,7 +176,7 @@ public class ItemModelJson implements IJsonSerializable
         if (modelJson.has("textures"))
         {
             if (this.textures == null)
-                this.textures = new HashMap<>();
+                this.textures = new TreeMap<>();
 
             final JsonObject texturesObject = modelJson.getAsJsonObject("textures");
 
@@ -241,7 +241,7 @@ public class ItemModelJson implements IJsonSerializable
 
     public void setDisplay(@Nullable final Map<ModelDisplayPositionsEnum, ModelDisplayPositionJson> display)
     {
-        this.display = display;
+        this.display = Utils.ensureTreeMap(display);
     }
 
     @Nullable
@@ -252,7 +252,7 @@ public class ItemModelJson implements IJsonSerializable
 
     public void setTextures(@Nullable final Map<String, String> textures)
     {
-        this.textures = textures;
+        this.textures = Utils.ensureTreeMap(textures);
     }
 
     @Nullable

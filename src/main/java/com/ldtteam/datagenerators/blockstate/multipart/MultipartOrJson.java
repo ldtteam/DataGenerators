@@ -3,14 +3,14 @@ package com.ldtteam.datagenerators.blockstate.multipart;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
+import com.ldtteam.datagenerators.Utils;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 
 public class MultipartOrJson implements IJsonSerializable
 {
-
     /**
      * A list of cases that all have to match the block to return true.
      * <p>
@@ -22,7 +22,7 @@ public class MultipartOrJson implements IJsonSerializable
      * It can be set to a list separated by | to allow multiple values to match.
      */
     @NotNull
-    private Map<String, String> states = new HashMap<>();
+    private Map<String, String> states = new TreeMap<>();
 
     public MultipartOrJson()
     {
@@ -30,7 +30,7 @@ public class MultipartOrJson implements IJsonSerializable
 
     public MultipartOrJson(@NotNull final Map<String, String> orElements)
     {
-        this.states = orElements;
+        this.states = Utils.ensureTreeMap(orElements);
     }
 
     @Override
@@ -65,6 +65,6 @@ public class MultipartOrJson implements IJsonSerializable
 
     public void setStates(@NotNull final Map<String, String> states)
     {
-        this.states = states;
+        this.states = Utils.ensureTreeMap(states);
     }
 }
