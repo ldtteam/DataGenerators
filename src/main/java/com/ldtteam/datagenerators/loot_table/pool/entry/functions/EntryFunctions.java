@@ -16,6 +16,8 @@ public class EntryFunctions
     static
     {
         ENTRY_FUNCTIONS.put(CopyNameFunctionJson.NAME, CopyNameFunctionJson::new);
+        ENTRY_FUNCTIONS.put(SetCountFunctionJson.NAME, SetCountFunctionJson::new);
+        ENTRY_FUNCTIONS.put(SetNbtFunctionJson.NAME, SetNbtFunctionJson::new);
     }
 
     @Nullable
