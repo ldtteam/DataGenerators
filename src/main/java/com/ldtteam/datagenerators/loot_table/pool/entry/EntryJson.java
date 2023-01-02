@@ -16,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated(forRemoval = true)
 public class EntryJson implements IJsonSerializable
 {
     /**
@@ -85,7 +86,7 @@ public class EntryJson implements IJsonSerializable
 
     /**
      * Determines how often this entry will be chosen out of all the entries in the pool.
-     * Entries with higher weights will be used more often (chance is this entry's weight⁄total of all considered entries' weights).
+     * Entries with higher weights will be used more often (chance is this entry's weight&frasl;total of all considered entries' weights).
      */
     private int weight;
 

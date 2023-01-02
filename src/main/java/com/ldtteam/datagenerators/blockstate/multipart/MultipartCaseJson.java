@@ -7,6 +7,7 @@ import com.ldtteam.datagenerators.blockstate.BlockstateVariantJson;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Deprecated(forRemoval = true)
 public class MultipartCaseJson implements IJsonSerializable
 {
 

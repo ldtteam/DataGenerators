@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@Deprecated(forRemoval = true)
 public class EntryFunctions
 {
     public final static Map<String, Supplier<? extends IEntryFunction>> ENTRY_FUNCTIONS = new HashMap<>();

@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.loot_table.pool.entry.functions.IEntryFunction;
 import org.jetbrains.annotations.NotNull;
 
+@Deprecated(forRemoval = true)
 public class CopyNameFunctionJson implements IEntryFunction
 {
     public static final String NAME = "minecraft:copy_name";

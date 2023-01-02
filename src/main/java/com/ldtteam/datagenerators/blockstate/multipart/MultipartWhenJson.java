@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Deprecated(forRemoval = true)
 public class MultipartWhenJson implements IJsonSerializable
 {
 

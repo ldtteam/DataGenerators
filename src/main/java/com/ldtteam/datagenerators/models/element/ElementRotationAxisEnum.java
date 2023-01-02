@@ -1,5 +1,6 @@
 package com.ldtteam.datagenerators.models.element;
 
+@Deprecated(forRemoval = true)
 public enum ElementRotationAxisEnum
 {
 

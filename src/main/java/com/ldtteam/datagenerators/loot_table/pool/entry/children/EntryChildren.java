@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@Deprecated(forRemoval = true)
 public class EntryChildren
 {
     public final static Map<EntryTypeEnum, Supplier<? extends IEntryChild>> ENTRY_CHILDREN = new HashMap<>();

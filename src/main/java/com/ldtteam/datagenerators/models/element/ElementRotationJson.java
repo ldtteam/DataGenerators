@@ -6,6 +6,7 @@ import com.ldtteam.datagenerators.IJsonSerializable;
 import com.ldtteam.datagenerators.models.XYZDoubleListJson;
 import org.jetbrains.annotations.NotNull;
 
+@Deprecated(forRemoval = true)
 public class ElementRotationJson implements IJsonSerializable
 {
 

@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@Deprecated(forRemoval = true)
 public class PoolConditions
 {
     public final static Map<String, Supplier<? extends IPoolCondition>> POOL_CONDITIONS = new HashMap<>();

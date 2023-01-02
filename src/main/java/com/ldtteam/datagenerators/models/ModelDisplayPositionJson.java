@@ -6,6 +6,7 @@ import com.ldtteam.datagenerators.IJsonSerializable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Deprecated(forRemoval = true)
 public class ModelDisplayPositionJson implements IJsonSerializable
 {
 

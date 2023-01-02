@@ -1,5 +1,6 @@
 package com.ldtteam.datagenerators.loot_table.pool.entry;
 
+@Deprecated(forRemoval = true)
 public enum EntryTypeEnum
 {
     ITEM("minecraft:item"),

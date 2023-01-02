@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.ldtteam.datagenerators.IJsonSerializable;
 import org.jetbrains.annotations.NotNull;
 
+@Deprecated(forRemoval = true)
 public class XYZDoubleListJson implements IJsonSerializable
 {
     /**

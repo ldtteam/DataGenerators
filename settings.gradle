@@ -1,2 +1,7 @@
-gradle.startParameter.setProjectProperties(new HashMap<>(gradle.startParameter.getProjectProperties()))
-gradle.startParameter.getProjectProperties().put("build.start", Long.toString(System.currentTimeMillis()))
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.minecraftforge.net/' }
+    }
+}
+rootProject.name = 'datagenerators'

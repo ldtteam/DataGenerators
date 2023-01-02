@@ -1,5 +1,6 @@
 package com.ldtteam.datagenerators.models;
 
+@Deprecated(forRemoval = true)
 public enum ModelDisplayPositionsEnum
 {
     /**

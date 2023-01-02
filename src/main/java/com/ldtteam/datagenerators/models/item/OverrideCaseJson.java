@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.IJsonSerializable;
 import org.jetbrains.annotations.NotNull;
 
+@Deprecated(forRemoval = true)
 public class OverrideCaseJson implements IJsonSerializable
 {
 

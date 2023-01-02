@@ -11,6 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated(forRemoval = true)
 public class ShapedRecipeJson implements IJsonSerializable
 {
     /**

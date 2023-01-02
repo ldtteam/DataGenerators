@@ -1,5 +1,6 @@
 package com.ldtteam.datagenerators.loot_table;
 
+@Deprecated(forRemoval = true)
 public enum LootTableTypeEnum
 {
 

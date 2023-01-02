@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.ldtteam.datagenerators.loot_table.pool.conditions.IPoolCondition;
 import org.jetbrains.annotations.NotNull;
 
+@Deprecated(forRemoval = true)
 public class SurvivesExplosionConditionJson implements IPoolCondition
 {
 

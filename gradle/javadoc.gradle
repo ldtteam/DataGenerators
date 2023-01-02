@@ -1,0 +1,2 @@
+tasks.javadoc.enabled = false
+tasks.packageJavadoc.enabled = false
